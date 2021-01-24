@@ -128,5 +128,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+android_app/.idea
 .idea
+.vscode
 *.xml
