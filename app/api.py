@@ -1,13 +1,13 @@
-from typing import Optional
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from newsplease import NewsPlease
 from pydantic import BaseModel
 
 
-class Message(BaseModel):
-    input: str
-    output: Optional[str] = None
+class ClassificationReport(BaseModel):
+    title: str
+    confidence: float
+    class_: str
 
 
 app = FastAPI()
@@ -27,7 +27,16 @@ app.add_middleware(
 )
 
 
-@app.post("/predict")
-async def predict_news(message: Message):
-    message.output = "yes"
-    return {"output": message.output}
+def get_article_info(url):
+    article = NewsPlease.from_url(url)
+    return article.title, article.maintext
+
+
+@app.get("/predict", response_model=ClassificationReport)
+async def predict_news(url: str):
+    title, body = get_article_info(url)
+    return ClassificationReport(
+        title=title,
+        confidence=0.89,
+        class_="c"
+    )
