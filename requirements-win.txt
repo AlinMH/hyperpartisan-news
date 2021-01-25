@@ -46,6 +46,7 @@ pyasn1==0.4.8
 pyasn1-modules==0.2.8
 pycparser==2.20
 pydantic==1.7.3
+pywin32==300
 PyDispatcher==2.0.5
 PyHamcrest==2.0.2
 PyMySQL==1.0.2
