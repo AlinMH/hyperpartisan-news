@@ -59,7 +59,7 @@ public class ClassifyNewsAsyncTask extends AsyncTask<String, Void, String> {
             JSONObject jsonObject = new JSONObject(result);
             String title = jsonObject.getString("title");
             double confidence = jsonObject.getDouble("confidence");
-            String newsClass = jsonObject.getString("class");
+            String newsClass = jsonObject.getString("class_");
 
             resultTextView.setText(title);
             resultConfidence.setText(Double.toString(confidence));
