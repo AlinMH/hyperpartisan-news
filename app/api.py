@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from newsplease import NewsPlease
 from pydantic import BaseModel
 
+from app.model import load_model, get_embedding
+
 
 class ClassificationReport(BaseModel):
     title: str
@@ -26,6 +28,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+model = load_model()
+
 
 def get_article_info(url):
     article = NewsPlease.from_url(url)
@@ -35,8 +39,17 @@ def get_article_info(url):
 @app.get("/predict", response_model=ClassificationReport)
 async def predict_news(url: str):
     title, body = get_article_info(url)
+    embedding = get_embedding(title + " " + body)
+    result = model.predict(embedding)[0]
+    result_class = "True"
+    confidence = result[1]
+
+    if result[0] > result[1]:
+        result_class = "False"
+        confidence = result[0]
+
     return ClassificationReport(
         title=title,
-        confidence=0.89,
-        class_="c"
+        confidence=float("{:.2f}".format(confidence * 100)),
+        class_=result_class
     )
