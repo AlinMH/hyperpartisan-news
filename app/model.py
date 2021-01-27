@@ -1,11 +1,13 @@
+import nltk
+import numpy as np
 import tensorflow as tf
 from nltk.tokenize import sent_tokenize
 from tensorflow.keras import backend as K
 from transformers import BertTokenizer, TFBertModel
-import numpy as np
 
 NB_OF_SENTS = 30
 
+nltk.download("punkt")
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 bert = TFBertModel.from_pretrained("bert-base-uncased")
 
@@ -51,5 +53,5 @@ def get_embedding(text: str):
 
 def load_model():
     model = get_model()
-    model.load_weights(r'model_weights/')
+    model.load_weights('model_weights/')
     return model
