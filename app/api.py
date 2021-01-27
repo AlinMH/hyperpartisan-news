@@ -38,7 +38,15 @@ def get_article_info(url):
 
 @app.get("/predict", response_model=ClassificationReport)
 async def predict_news(url: str):
-    title, body = get_article_info(url)
+    try:
+        title, body = get_article_info(url)
+    except Exception as e:
+        return ClassificationReport(
+            title="Fail",
+            confidence=0.0,
+            class_="Failed to parse"
+        )
+
     embedding = get_embedding(title + " " + body)
     result = model.predict(embedding)[0]
     result_class = "True"
