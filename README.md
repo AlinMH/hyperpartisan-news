@@ -1,1 +1,1 @@
-# sri-project
+# Hyperpartisan news detection
