@@ -101,7 +101,7 @@ tqdm==4.56.0
 transformers==4.2.2
 Twisted==20.3.0
 typing-extensions==3.7.4.3
-urllib3==1.26.2
+urllib3==1.26.3
 uvicorn==0.13.3
 w3lib==1.22.0
 warcio==1.7.4
