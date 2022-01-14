@@ -50,7 +50,7 @@ Markdown==3.3.3
 news-please==1.5.13
 newspaper3k==0.2.8
 nltk==3.6.5
-numpy==1.19.5
+numpy==1.21.0
 oauthlib==3.1.0
 opt-einsum==3.3.0
 packaging==20.8
