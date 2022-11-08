@@ -83,7 +83,7 @@ rsa==4.7
 s3transfer==0.3.4
 sacremoses==0.0.43
 scipy==1.4.1
-Scrapy==2.6.0
+Scrapy==2.7.1
 service-identity==18.1.0
 sgmllib3k==1.0.0
 six==1.15.0
